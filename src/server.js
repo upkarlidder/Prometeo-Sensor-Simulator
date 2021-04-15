@@ -1,10 +1,15 @@
 const logger = require('pino')();
+const { PRIORITY_NORMAL } = require('constants');
 const fs = require('fs');
 var mqtt = require('mqtt');
 
+logger.info('starting src/server.js');
+
+logger.info(process.env);
+
 function main(params) {
     return new Promise((resolve, reject) => {
-        var pemFile = fs.readFileSync(params.IOT_PEM);
+        var pemFile = fs.readFileSync(params.IOT_PEM_FILE);
         // the clientid format from the docs: d:orgId:deviceType:deviceId. 
         // const clientID = params.IOT_CLIENTID + `-${Date.now()}`;
         const options = {
